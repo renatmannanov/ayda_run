@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from .routes import users, activities
+
 app = FastAPI(title="Runner Matching API")
 
 # CORS setup for frontend
@@ -11,6 +13,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(users.router, tags=["users"])
+app.include_router(activities.router, tags=["activities"])
 
 @app.get("/")
 async def root():
