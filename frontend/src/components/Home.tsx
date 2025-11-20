@@ -27,7 +27,7 @@ export const Home = () => {
                         transition: 'transform 0.1s',
                         width: '100%'
                     }}
-                    onClick={() => console.log('Join Run')}
+                    onClick={() => navigate('/join')}
                 >
                     <div style={{
                         background: 'rgba(59, 130, 246, 0.1)',

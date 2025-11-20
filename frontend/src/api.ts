@@ -1,8 +1,9 @@
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'http://localhost:8000';
 
 export const api = {
     // User endpoints
     createUser: async (userData: any) => {
+        console.log('Creating user:', userData);
         const response = await fetch(`${API_URL}/users`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,8 +31,21 @@ export const api = {
     },
 
     getActivities: async () => {
-        const response = await fetch(`${API_URL}/activities`);
-        if (!response.ok) throw new Error('Failed to get activities');
-        return response.json();
+        console.log(`Fetching activities from ${API_URL}/activities...`);
+        try {
+            const response = await fetch(`${API_URL}/activities`);
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                const text = await response.text();
+                console.error('Error response:', text);
+                throw new Error('Failed to get activities');
+            }
+            const data = await response.json();
+            console.log('Activities data:', data);
+            return data;
+        } catch (error) {
+            console.error('Fetch error:', error);
+            throw error;
+        }
     }
 };

@@ -33,6 +33,8 @@ class ActivityBase(BaseModel):
     # For manual: Google Maps Link. For Strava: [lat, lng]
     activity_start_point_link: Optional[str] = None 
     activity_start_latlng: Optional[List[float]] = None
+    activity_city: Optional[str] = None
+    activity_country: Optional[str] = None
     
     # Scheduling
     activity_date: Optional[str] = None # For ONCE: "YYYY-MM-DD"
